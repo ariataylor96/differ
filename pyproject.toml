@@ -1,0 +1,26 @@
+[build-system]
+requires = [ "poetry-core>=1.0.0",]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry]
+name = "differ"
+version = "0.1.0"
+description = ""
+authors = [ "Mark Rawls <markrawls96@gmail.com>",]
+
+[tool.black]
+line-length = 95
+target-version = [ "py39",]
+
+[tool.poetry.dependencies]
+python = "^3.9"
+Flask = "^2.0.1"
+GitPython = "^3.1.20"
+python-environ = "^0.4.54"
+redis = "^3.5.3"
+Flask-Caching = "^1.10.1"
+Flask-Session = "^0.4.0"
+
+[tool.poetry.dev-dependencies]
+pytest = "^5.2"
+black = "^21.7b0"

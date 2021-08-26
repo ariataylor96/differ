@@ -1,0 +1,17 @@
+FROM python:latest
+
+RUN pip install --upgrade poetry
+
+RUN mkdir /code
+WORKDIR /code
+
+COPY pyproject.toml .
+COPY poetry.lock .
+
+RUN poetry install --no-root
+
+ENV FLASK_APP=differ.main
+ENV FLASK_ENV=development
+ENV PYTHON_UNBUFFERED=1
+
+CMD ["poetry", "run", "flask", "run", "-p", "3000", "--host", "0.0.0.0"]

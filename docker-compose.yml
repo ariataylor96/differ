@@ -1,0 +1,14 @@
+version: '3'
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile.local
+    ports:
+      - 3005:3000
+    volumes:
+      - ./:/code
+      - ./repos:/repos
+
+  cache:
+    image: redis:6
