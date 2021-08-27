@@ -1,18 +1,7 @@
-from time import time
-
-from .app import app, cache
-from .db import Token
+from .app import app
 from .utils import check_authentication, get_repo, get_commit_before, get_file_changes
 
 from flask import request
-
-
-@cache.memoize(timeout=30)
-def _is_authenticated(key):
-    if key is None:
-        return False
-
-    return Token.select().where(Token.value == key).exists()
 
 
 @app.route("/")
