@@ -51,6 +51,7 @@ def _blob_to_arr(blob):
     return [line.rstrip() for line in blob.data_stream.read().decode().split("\n")]
 
 
+@cache.memoize(timeout=60)
 def get_file_changes(previous, current, file_path):
     differ = difflib.Differ()
     git_diff = current.diff(previous, paths=file_path)
