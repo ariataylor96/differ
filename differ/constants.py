@@ -1,13 +1,12 @@
-from urllib.parse import urlparse
 from differ import env
-from redis import Redis
 
-REDIS_URL = env.str("REDIS_URL", default="redis://cache:6379/0")
+REPO_DIRECTORY: str = env.str("REPO_DIRECTORY", default="/repos")
 
-REPO_DIRECTORY = env.str("REPO_DIRECTORY", default="/repos")
-CACHE_CONFIG = {
+REDIS_URL: str = env.str("REDIS_URL", default="redis://cache:6379/0")
+CACHE_CONFIG: dict[str, str] = {
     "CACHE_TYPE": "redis",
     "CACHE_KEY_PREFIX": "differ",
     "CACHE_REDIS_URL": REDIS_URL,
 }
-REDIS_CONNECTION = Redis(host=urlparse(REDIS_URL).hostname)
+
+DATABASE_URL: str = env.str("DATABASE_URL", default="sqlite:///code/data.db")

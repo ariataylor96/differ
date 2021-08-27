@@ -1,5 +1,8 @@
 FROM python:latest
 
+RUN apt-get update
+RUN apt-get install git
+
 RUN pip install --upgrade poetry
 
 RUN mkdir /code
