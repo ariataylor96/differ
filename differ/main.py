@@ -15,11 +15,6 @@ def _is_authenticated(key):
     return Token.select().where(Token.value == key).exists()
 
 
-@cache.memoize(timeout=5)
-def funcall():
-    return time()
-
-
 @app.route("/")
 def index():
     if not check_authentication():
