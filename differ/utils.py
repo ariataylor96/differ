@@ -47,12 +47,16 @@ def get_commit_before(repo, date) -> git.Commit:
     return last_commit
 
 
-def _blob_to_arr(blob):
+def _blob_to_arr(blob) -> list[str]:
     return [line.rstrip() for line in blob.data_stream.read().decode().split("\n")]
 
 
 @cache.memoize(timeout=60)
-def get_file_changes(previous, current, file_path):
+def get_file_changes(
+    previous: git.Commit,
+    current: git.Commit,
+    file_path,
+) -> dict[str, list[str]]:
     differ = difflib.Differ()
     git_diff = current.diff(previous, paths=file_path)
     default_ret = {"added": [], "removed": []}
