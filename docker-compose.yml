@@ -10,14 +10,7 @@ services:
       - ./:/code
       - ./repos:/repos
     environment:
-      - DATABASE_URL=postgresql://postgres:postgres@db:5432/postgres
-    depends_on:
-      - db
-
-  db:
-    image: postgres:latest
-    environment:
-      - POSTGRES_PASSWORD=postgres
+      - DATABASE_URL=sqlite:////code/data.db
 
   cache:
     image: redis:6
