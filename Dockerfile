@@ -21,4 +21,4 @@ RUN poetry install
 
 ENV PYTHON_UNBUFFERED=1
 
-CMD ["poetry", "run", "gunicorn", "-w", "4", "-b", "0.0.0.0:3000", "differ.main:app"]
+CMD ["poetry", "run", "gunicorn", "-w", "4", "-b", "0.0.0.0:3000", "-t", "600", "differ.main:app"]
