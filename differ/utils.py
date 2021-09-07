@@ -4,6 +4,7 @@ import os
 from flask import request
 import git
 
+from . import env
 from .app import cache
 from .constants import REPO_DIRECTORY
 from .db import Token
@@ -11,6 +12,9 @@ from .db import Token
 
 @cache.memoize(timeout=30)
 def _key_is_valid(key: str) -> bool:
+    if env("FLASK_ENV", default="prod") == "development":
+        return True
+
     if key is None:
         return False
 
